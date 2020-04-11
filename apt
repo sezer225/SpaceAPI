@@ -1,0 +1,18 @@
+apt update
+apt upgrade
+apt install git
+git clone https://github.com/sezer225/SpaceAPI.git
+nano ~/.bash_aliases
+ GNU nano 4.9.1   /root/.bash_aliases  Modified  
+alias hackwifi='besside-ng wlan0'
+
+adduser somethingnotroot
+usermod -aG sudo somethingnotroot
+
+split terminal same window
+apt install tilix
+tilix
+
+install tor
+echo 'deb https://deb.torproject.org/torproject.org stretch main
+deb-src https://deb.torproject.org/torproject.org stretch main' > /etc/apt/sources.list.d/tor.list
